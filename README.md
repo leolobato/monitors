@@ -11,9 +11,10 @@ Requires macOS 15 or later. The app uses a private API, so it is not sandboxed a
 
 ```sh
 cp Configuration/LocalSigning.xcconfig.example Configuration/LocalSigning.xcconfig  # set your team ID
-xcodegen generate
-open Monitors.xcodeproj
+make install   # Developer ID signed Release build, installed to /Applications
 ```
+
+`make build` only builds. `make uninstall` removes the app.
 
 If a display stays off (for example, after a crash), open the app and choose **Enable All Displays**.
 

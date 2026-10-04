@@ -6,7 +6,7 @@ RELEASE_APP  := $(BUILD_DIR)/Build/Products/Release/$(APP_NAME).app
 INSTALL_DIR  := /Applications
 SIGN_IDENTITY ?= Developer ID Application
 
-.PHONY: all project build install uninstall clean
+.PHONY: all project build install quit uninstall clean
 
 all: build
 
@@ -23,14 +23,18 @@ build: project
 
 # Quitting first lets the running app re-enable any displays it turned off.
 install: build
-	-osascript -e 'tell application id "$$(defaults read "$(CURDIR)/$(RELEASE_APP)/Contents/Info" CFBundleIdentifier)" to quit' 2>/dev/null
-	@while pgrep -x $(APP_NAME) >/dev/null; do sleep 0.2; done
+	@$(MAKE) --no-print-directory quit
 	rm -rf "$(INSTALL_DIR)/$(APP_NAME).app"
 	ditto "$(RELEASE_APP)" "$(INSTALL_DIR)/$(APP_NAME).app"
 	open "$(INSTALL_DIR)/$(APP_NAME).app"
 
-uninstall:
-	-osascript -e 'tell application "$(APP_NAME)" to quit' 2>/dev/null
+# The app treats SIGTERM as a normal quit, so it re-enables displays before exiting.
+quit:
+	@pkill -TERM -x $(APP_NAME) || true
+	@for i in $$(seq 50); do pgrep -x $(APP_NAME) >/dev/null || exit 0; sleep 0.2; done; \
+		echo "$(APP_NAME) did not quit" >&2; exit 1
+
+uninstall: quit
 	rm -rf "$(INSTALL_DIR)/$(APP_NAME).app"
 
 clean:

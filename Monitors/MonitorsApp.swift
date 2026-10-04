@@ -3,13 +3,32 @@ import SwiftUI
 
 @main
 struct MonitorsApp: App {
-    @State private var store = DisplayStore()
+    @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
 
     var body: some Scene {
         MenuBarExtra("Monitors", systemImage: "display.2") {
-            MonitorsMenu(store: store)
+            MonitorsMenu(store: appDelegate.store)
         }
         .menuBarExtraStyle(.menu)
+    }
+}
+
+/// Owns the store so displays this app disabled are turned back on when it quits.
+@MainActor final class AppDelegate: NSObject, NSApplicationDelegate {
+    let store = DisplayStore()
+    private var termination: DispatchSourceSignal?
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        // `kill`/`pkill` sends SIGTERM, which skips `applicationWillTerminate` unless routed through it.
+        signal(SIGTERM, SIG_IGN)
+        let source = DispatchSource.makeSignalSource(signal: SIGTERM, queue: .main)
+        source.setEventHandler { NSApplication.shared.terminate(nil) }
+        source.resume()
+        termination = source
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        store.enableAll()
     }
 }
 

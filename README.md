@@ -1,20 +1,22 @@
 # Monitors
 
-A macOS menu bar app that lists the connected displays and turns each one on or off.
+A macOS menu bar app that lists your connected displays and lets you turn each one off and on again.
 
-It uses the private SkyLight `SLSConfigureDisplayEnabled` call, the same soft disconnect that Playden uses. When the app quits, it
-turns on again all the displays that it disabled. A crash or a force quit (`kill -9`) does not do this. In that case, open the app
-and use **Enable All Displays**. If the app does not show the display
-(for example, after a reboot changed the display IDs), disconnect and connect the monitor again, or restart the Mac.
+It uses the private SkyLight API (`SLSConfigureDisplayEnabled`) to soft-disconnect a display. When you quit the app, it turns
+the displays back on. The app never disables your last active display.
 
-- The app never disables the last enabled display.
-- The app does not disable displays while mirroring is on.
-- The app lists an offline display only if the app disabled it. SkyLight also reports empty display slots.
+Requires macOS 15 or later. The app uses a private API, so it is not sandboxed and cannot be distributed on the Mac App Store.
 
 ## Build
 
 ```sh
-cp Configuration/LocalSigning.xcconfig.example Configuration/LocalSigning.xcconfig  # set your team
+cp Configuration/LocalSigning.xcconfig.example Configuration/LocalSigning.xcconfig  # set your team ID
 xcodegen generate
-xcodebuild -project Monitors.xcodeproj -scheme Monitors -destination 'platform=macOS' build
+open Monitors.xcodeproj
 ```
+
+If a display stays off (for example, after a crash), open the app and choose **Enable All Displays**.
+
+## License
+
+MIT

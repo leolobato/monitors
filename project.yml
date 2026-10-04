@@ -12,9 +12,15 @@ targets:
     type: application
     platform: macOS
     sources:
-      - Monitors
+      - path: Monitors
+        excludes:
+          - AppIcon.icon
+      - path: Monitors/AppIcon.icon
+        type: file
+        buildPhase: resources
     settings:
       base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
         PRODUCT_NAME: Monitors
         MARKETING_VERSION: "1.0"

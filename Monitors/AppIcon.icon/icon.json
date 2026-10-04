@@ -1,0 +1,26 @@
+{
+  "fill": {
+    "solid": "srgb:0.10588,0.11373,0.12941,1.00000"
+  },
+  "groups": [
+    {
+      "name": "Monitors",
+      "layers": [
+        {
+          "name": "Front monitor",
+          "image-name": "front-monitor.svg",
+          "glass": false
+        },
+        {
+          "name": "Rear monitor",
+          "image-name": "rear-monitor.svg",
+          "glass": false
+        }
+      ],
+      "shadow": { "kind": "none", "opacity": 0 },
+      "specular": false,
+      "translucency": { "enabled": false, "value": 0 }
+    }
+  ],
+  "supported-platforms": { "squares": "shared" }
+}

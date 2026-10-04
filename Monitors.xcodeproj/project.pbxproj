@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1209B3E581A201400E4AAB98 /* SkyLightDisplays.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BB2B1543DAE0339F49D24 /* SkyLightDisplays.swift */; };
+		94C6987BA1D9C1C4B19279A4 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = AD5DB862F08BE57D9A968CFF /* AppIcon.icon */; };
 		BFA60CFF5D96A6CC037B371F /* MonitorsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D200153E91BCF040E99496B /* MonitorsApp.swift */; };
 		C08365C01B988825B5E413D1 /* DisplayStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900F96DF2C738D94F5E34D74 /* DisplayStore.swift */; };
 /* End PBXBuildFile section */
@@ -18,6 +19,7 @@
 		51270FFDD20F5029602756A3 /* Monitors.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Monitors.entitlements; sourceTree = "<group>"; };
 		900F96DF2C738D94F5E34D74 /* DisplayStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayStore.swift; sourceTree = "<group>"; };
 		9D200153E91BCF040E99496B /* MonitorsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorsApp.swift; sourceTree = "<group>"; };
+		AD5DB862F08BE57D9A968CFF /* AppIcon.icon */ = {isa = PBXFileReference; path = AppIcon.icon; sourceTree = "<group>"; };
 		C58BB2B1543DAE0339F49D24 /* SkyLightDisplays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyLightDisplays.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -25,6 +27,7 @@
 		4B8154D0C3B720663401358F /* Monitors */ = {
 			isa = PBXGroup;
 			children = (
+				AD5DB862F08BE57D9A968CFF /* AppIcon.icon */,
 				900F96DF2C738D94F5E34D74 /* DisplayStore.swift */,
 				51270FFDD20F5029602756A3 /* Monitors.entitlements */,
 				9D200153E91BCF040E99496B /* MonitorsApp.swift */,
@@ -66,6 +69,7 @@
 			buildConfigurationList = CA6ADE3C8F96A46BA7D14D3A /* Build configuration list for PBXNativeTarget "Monitors" */;
 			buildPhases = (
 				A6E89081AF910CA53802BB65 /* Sources */,
+				ED73EF9469704EAF7A6E0EF3 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -111,6 +115,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED73EF9469704EAF7A6E0EF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94C6987BA1D9C1C4B19279A4 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A6E89081AF910CA53802BB65 /* Sources */ = {
